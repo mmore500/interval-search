@@ -1,5 +1,5 @@
-Welcome to interval_search's documentation!
-======================================
+Welcome to interval-search's documentation!
+===========================================
 
 .. toctree::
    :maxdepth: 2

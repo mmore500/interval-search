@@ -1,6 +1,6 @@
-============
+===============
 interval-search
-============
+===============
 
 
 .. image:: https://img.shields.io/pypi/v/interval-search.svg
