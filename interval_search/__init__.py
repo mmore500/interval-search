@@ -2,7 +2,7 @@
 
 __author__ = """Matthew Andres Moreno"""
 __email__ = 'm.more500@gmail.com'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 from .binary_search import binary_search
 from .doubling_search import doubling_search
