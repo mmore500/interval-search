@@ -38,7 +38,7 @@ setup(
     include_package_data=True,
     keywords='interval-search',
     name='interval-search',
-    packages=find_packages(include=['interval-search', 'interval-search.*']),
+    packages=find_packages(include=['interval_search', 'interval_search.*']),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
