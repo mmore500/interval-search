@@ -23,9 +23,12 @@ def binary_search(
     -------
     guess
         The lowest integer value that satisfies the search criteria, and None
-        if upper_bound does not satisfy the search criteria.
+        if upper_bound does not satisfy the search criteria or search range is
+        empty (i.e., lower_bound > upper_bound).
     """
 
+    if lower_bound > upper_bound:
+        return None
     if lower_bound == upper_bound:
         if predicate(lower_bound):
             return lower_bound

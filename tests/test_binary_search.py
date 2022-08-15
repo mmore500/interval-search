@@ -17,3 +17,9 @@ def test_binary_search():
 
 def test_fruitless_binary_search():
     assert inch.binary_search(lambda x: False, 0, 100) is None
+
+def test_empty_binary_search():
+    assert inch.binary_search(lambda x: False, 100, 99) is None
+    assert inch.binary_search(lambda x: False, 100, 0) is None
+    assert inch.binary_search(lambda x: True, 100, 99) is None
+    assert inch.binary_search(lambda x: True, 100, 0) is None
