@@ -31,13 +31,21 @@ interval-search provides predicate-based binary and doubling search implementati
 
   # inch.binary_search
   list_ = [1, 10, 20, 500, 5000]
-  binary_search(lambda x: list_[x] >= 20, 0, len(list_) - 1)
+  inch.binary_search(lambda x: list_[x] >= 20, 0, len(list_) - 1)
   # -> 2
 
   # inch.doubling_search
   inch.doubling_search(lambda x: x >= 5) # -> 5
   # with a lower bound to start searching at,
   inch.doubling_search(lambda x: x >= 5, 10) # -> 10
+
+  # inch.interval_search
+  # uses binary search or doubling search
+  # depending on whether upper bound is specified
+  inch.interval_search(lambda x: list_[x] >= 20, 0, len(list_) - 1)
+  # -> 2
+  inch.interval_search(lambda x: x >= 5, 10) # -> 10
+  
 
 Credits
 -------
