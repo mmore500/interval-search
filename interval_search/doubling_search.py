@@ -7,9 +7,8 @@ def doubling_search(
     predicate: typing.Callable[[int], bool],
     lower_bound: int = 0,
 ) -> int:
-    """
-    Find the positive integer threshold below which a search criteria is never
-    satisfied and above which it is always satisfied.
+    """Find the positive integer threshold below which a search criteria is
+    never satisfied and above which it is always satisfied.
 
     Parameters
     ----------

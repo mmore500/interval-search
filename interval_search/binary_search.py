@@ -6,9 +6,8 @@ def binary_search(
     lower_bound: int,
     upper_bound: int,
 ) -> typing.Optional[int]:
-    """
-    Find the positive integer threshold below which a search criteria is never
-    satisfied and above which it is always satisfied.
+    """Find the positive integer threshold below which a search criteria is
+    never satisfied and above which it is always satisfied.
 
     Parameters
     ----------
