@@ -1,6 +1,6 @@
 import typing
 
-from .binary_search import binary_search
+from .curried_doubling_search import curried_doubling_search
 
 
 def doubling_search(
@@ -24,12 +24,4 @@ def doubling_search(
         The lowest integer value that satisfies the search criteria.
     """
 
-    assert lower_bound >= 0, lower_bound
-
-    bound = 1
-    while not predicate(lower_bound + bound):
-        bound *= 2
-
-    prev_bound = bound // 2
-    prev_guess = lower_bound + prev_bound
-    return binary_search(predicate, prev_guess, lower_bound + bound)
+    return curried_doubling_search(predicate)(lower_bound)

@@ -1,5 +1,6 @@
 import typing
 
+from .curried_binary_search import curried_binary_search
 
 def binary_search(
     predicate: typing.Callable[[int], bool],
@@ -26,17 +27,4 @@ def binary_search(
         empty (i.e., lower_bound > upper_bound).
     """
 
-    if lower_bound > upper_bound:
-        return None
-    if lower_bound == upper_bound:
-        if predicate(lower_bound):
-            return lower_bound
-        else:
-            return None
-
-    midpoint = (lower_bound + upper_bound) // 2
-
-    if predicate(midpoint):
-        return binary_search(predicate, lower_bound, midpoint)
-    else:
-        return binary_search(predicate, midpoint + 1, upper_bound)
+    return curried_binary_search(predicate)(lower_bound, upper_bound)
