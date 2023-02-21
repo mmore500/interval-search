@@ -15,10 +15,6 @@ def curried_binary_search(
     ----------
     predicate : callable object
         Returns whether an integer value satisfies the search criteria.
-    lower_bound : int
-        Lower bound for the binary search, inclusive.
-    upper_bound : int
-        Upper bound for the binary search, inclusive.
 
     Returns
     -------
