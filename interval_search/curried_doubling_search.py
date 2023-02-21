@@ -5,6 +5,9 @@ from .binary_search import binary_search
 
 def curried_doubling_search(
     predicate: typing.Callable[[int], bool],
+    decorate_with: typing.Callable[
+        [typing.Callable], typing.Callable
+    ] = lambda x: x,
 ) -> typing.Callable[[typing.Optional[int]], int]:
     """Find the positive integer threshold below which a search criteria is
     never satisfied and above which it is always satisfied.
@@ -17,6 +20,9 @@ def curried_doubling_search(
     ----------
     predicate : callable object
         Returns whether an integer value satisfies the search criteria.
+    decorate_with : callable, optional
+        A decorator that will be applied to the inner search function. Useful
+        to enable jit compilation.
 
     Returns
     -------
@@ -26,6 +32,7 @@ def curried_doubling_search(
         criteria. If no lower bound is provided, the default is taken as 0.
     """
 
+    @decorate_with
     def doubling_search(lower_bound: int = 0) -> int:
         """Find the positive integer threshold below which a search criteria is
         never satisfied and above which it is always satisfied.

@@ -3,6 +3,9 @@ import typing
 
 def curried_binary_search(
     predicate: typing.Callable[[int], bool],
+    decorate_with: typing.Callable[
+        [typing.Callable], typing.Callable
+    ] = lambda x: x,
 ) -> typing.Callable[[int, int], typing.Optional[int]]:
     """Find the positive integer threshold below which a search criteria is
     never satisfied and above which it is always satisfied.
@@ -15,6 +18,9 @@ def curried_binary_search(
     ----------
     predicate : callable object
         Returns whether an integer value satisfies the search criteria.
+    decorate_with : callable, optional
+        A decorator that will be applied to the inner search function. Useful
+        to enable jit compilation.
 
     Returns
     -------
@@ -23,9 +29,11 @@ def curried_binary_search(
         `lower_bound` and `upper_bound` and returns the first integer value
         that satisfies the search criteria.
 
-        If no value satisfies the search criteria, the curried search function will return None.
+        If no value satisfies the search criteria, the curried search function
+        will return None.
     """
 
+    @decorate_with
     def binary_search(
         lower_bound: int,
         upper_bound: int,
