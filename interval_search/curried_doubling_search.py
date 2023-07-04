@@ -53,9 +53,9 @@ def curried_doubling_search(
 
         bound = 1
         while not predicate(lower_bound + bound):
-            bound *= 2
+            bound <<= 1  # equiv *= 2
 
-        prev_bound = bound // 2
+        prev_bound = bound >> 1  # equiv // 2
         prev_guess = lower_bound + prev_bound
         return binary_search_iterative(
             predicate, prev_guess, lower_bound + bound

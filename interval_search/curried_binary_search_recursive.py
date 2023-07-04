@@ -64,7 +64,7 @@ def curried_binary_search_recursive(
             else:
                 return None
 
-        midpoint = (lower_bound + upper_bound) // 2
+        midpoint = (lower_bound + upper_bound) >> 1  # equiv // 2
 
         if predicate(midpoint):
             return binary_search_recursive(lower_bound, midpoint)

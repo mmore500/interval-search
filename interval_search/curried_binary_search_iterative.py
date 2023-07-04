@@ -61,7 +61,7 @@ def curried_binary_search_iterative(
         # Loop until lower_bound is greater than upper_bound
         while lower_bound <= upper_bound:
             # Find the midpoint
-            midpoint = (lower_bound + upper_bound) // 2
+            midpoint = (lower_bound + upper_bound) >> 1  # equiv // 2
 
             # If predicate is satisfied by midpoint, search the left half.
             if predicate(midpoint):
