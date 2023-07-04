@@ -1,14 +1,16 @@
 import typing
 
 
-def curried_iterative_binary_search(
+def curried_binary_search_recursive(
     predicate: typing.Callable[[int], bool],
-    decorate_with: typing.Callable[[typing.Callable], typing.Callable] = lambda x: x,
+    decorate_with: typing.Callable[
+        [typing.Callable], typing.Callable
+    ] = lambda x: x,
 ) -> typing.Callable[[int, int], typing.Optional[int]]:
     """Find the positive integer threshold below which a search criteria is
     never satisfied and above which it is always satisfied.
 
-    Currying allows for calls that don't pass the predicate callable
+    Currying allows for recursive calls that don't pass the predicate callable
     as an argument, which is necessary for compatibility with Numba jit
     compilation.
 
@@ -27,12 +29,12 @@ def curried_iterative_binary_search(
         `lower_bound` and `upper_bound` and returns the first integer value
         that satisfies the search criteria.
 
-        If no value satisfies the search criteria, the search function
+        If no value satisfies the search criteria, the curried search function
         will return None.
     """
 
     @decorate_with
-    def iterative_binary_search(
+    def binary_search_recursive(
         lower_bound: int,
         upper_bound: int,
     ) -> typing.Optional[int]:
@@ -54,27 +56,19 @@ def curried_iterative_binary_search(
             range is empty (i.e., lower_bound > upper_bound).
         """
 
-        # Check if the range is invalid.
         if lower_bound > upper_bound:
             return None
-
-        # Loop until lower_bound is greater than upper_bound
-        while lower_bound <= upper_bound:
-            # Find the midpoint
-            midpoint = (lower_bound + upper_bound) // 2
-
-            # If predicate is satisfied by midpoint, search the left half.
-            if predicate(midpoint):
-                upper_bound = midpoint - 1
-            # Otherwise, search the right half.
+        if lower_bound == upper_bound:
+            if predicate(lower_bound):
+                return lower_bound
             else:
-                lower_bound = midpoint + 1
+                return None
 
-        # If the search ended successfully, lower_bound is the answer.
-        # Otherwise, return None.
-        if predicate(lower_bound):
-            return lower_bound
+        midpoint = (lower_bound + upper_bound) // 2
+
+        if predicate(midpoint):
+            return binary_search_recursive(lower_bound, midpoint)
         else:
-            return None
+            return binary_search_recursive(midpoint + 1, upper_bound)
 
-    return iterative_binary_search
+    return binary_search_recursive

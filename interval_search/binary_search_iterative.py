@@ -1,9 +1,9 @@
 import typing
 
-from .curried_iterative_binary_search import curried_iterative_binary_search
+from .curried_binary_search_iterative import curried_binary_search_iterative
 
 
-def iterative_binary_search(
+def binary_search_iterative(
     predicate: typing.Callable[[int], bool],
     lower_bound: int,
     upper_bound: int,
@@ -28,4 +28,4 @@ def iterative_binary_search(
         empty (i.e., lower_bound > upper_bound).
     """
 
-    return curried_iterative_binary_search(predicate)(lower_bound, upper_bound)
+    return curried_binary_search_iterative(predicate)(lower_bound, upper_bound)
