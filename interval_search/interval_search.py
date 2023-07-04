@@ -1,6 +1,6 @@
 import typing
 
-from .binary_search import binary_search
+from .binary_search_iterative import binary_search_iterative
 from .doubling_search import doubling_search
 
 
@@ -35,7 +35,7 @@ def interval_search(
     return doubling_search(
         predicate,
         lower_bound,
-    ) if upper_bound is None else binary_search(
+    ) if upper_bound is None else binary_search_iterative(
         predicate,
         lower_bound,
         upper_bound,

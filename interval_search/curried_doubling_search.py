@@ -1,6 +1,6 @@
 import typing
 
-from .binary_search import binary_search
+from .binary_search_iterative import binary_search_iterative
 
 
 def curried_doubling_search(
@@ -57,6 +57,8 @@ def curried_doubling_search(
 
         prev_bound = bound // 2
         prev_guess = lower_bound + prev_bound
-        return binary_search(predicate, prev_guess, lower_bound + bound)
+        return binary_search_iterative(
+            predicate, prev_guess, lower_bound + bound
+        )
 
     return doubling_search
