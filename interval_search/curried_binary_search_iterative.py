@@ -53,28 +53,25 @@ def curried_binary_search_iterative(
             None if upper_bound does not satisfy the search criteria or search
             range is empty (i.e., lower_bound > upper_bound).
         """
-
-        # Check if the range is invalid.
-        if lower_bound > upper_bound:
-            return None
-
-        # Loop until lower_bound is greater than upper_bound
-        while lower_bound <= upper_bound:
+        # Loop until lower_bound is greater than or equal to upper_bound
+        while lower_bound < upper_bound:
             # Find the midpoint
             midpoint = (lower_bound + upper_bound) >> 1  # equiv // 2
 
-            # If predicate is satisfied by midpoint, search the left half.
             if predicate(midpoint):
-                upper_bound = midpoint - 1
-            # Otherwise, search the right half.
+                upper_bound = midpoint
             else:
                 lower_bound = midpoint + 1
 
         # If the search ended successfully, lower_bound is the answer.
         # Otherwise, return None.
-        if predicate(lower_bound):
-            return lower_bound
-        else:
+        if lower_bound > upper_bound:
             return None
+        if lower_bound == upper_bound:
+            if predicate(lower_bound):
+                return lower_bound
+            else:
+                return None
+
 
     return binary_search_iterative
